@@ -192,30 +192,40 @@
          *    > [{ name: 'Jon' }, { name: 'Kevin' }, { name: 'Sam' }]
          *
          */
-        function sortObjListByProp(prop) {
+        function sortObjListByProp(prop, sortDetail) {
             return function(objList) {
                 // Make a copy & don't mutate the passed in list
-                let result = objList;
+            	// ********** Remove slice so we don't lose any employees ************
+                var result = objList;
 
-                result.sort((a, b) => {
-                    if (a[prop] < b[prop]) {
+				// Add return from the sort function instead of sort's return value
+				// change multiple ifs and default return to if:else if 
+				// Add sorting for last name but passing in new variable of sortDetail
+				// this is then used with subPropA and subPropB to get first/last names************
+                return result.sort((a, b) => {
+                	var subPropA;
+                	var subPropB;
+                	if(sortDetail === 'first') {
+                		subPropA = getFirstName(a.name);
+                		subPropB = getFirstName(b.name);
+                	}
+                	else if(sortDetail === 'last') {
+                		subPropA = getLastName(a.name);
+                		subPropB = getLastName(b.name);
+                	}
+                	
+                    if (subPropA < subPropB) {
                         return -1;
                     }
-
-                    if (a[prop] > b[prop]) {
+					else if (subPropA >= subPropB) {
                         return 1;
                     }
-
-                    return 1;
-                });
-
-                return result;
+        		});
             };
         }
 
-        const sortByFirstName = sortObjListByProp('name');
-
-        const sortByLastName = (personList) => sortByFirstName(personList).reverse();
+        const sortByFirstName = sortObjListByProp('name', 'first');
+        const sortByLastName = sortObjListByProp('name', 'last');
 
 
         /*==================================================
