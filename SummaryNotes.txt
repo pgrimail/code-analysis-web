@@ -1,0 +1,23 @@
+All notes below are in response and extension of commit notes from Pull Request.
+
+1) Adding 3rd party CDNs and JQuery for basic, enhanced UI/UX controls. Instead of using out-of-the-box controls, UI/UX 
+		should always be taken into account for applications. Although this is a code analysis and only the most basic styling
+		was added for effect, further time spent would include: 
+		- Enhancement to table formatting & colors
+		- Addition of header elements for discernibility between section
+		- Addition of directions/description of application
+		- Addition of column sorting/filtering in place of buttons
+		
+2) .slice() should never be used with an array unless otherwise intending to remove an item from an array. Additionally, further 
+		"dangers" of .slice() is knowing at which index the intended item to be removed is. When copying an array, we only need
+		to set a new variable to the original variable/parameter in which the array is located/stored. This will not mutate the
+		original array when changing the new variable.
+		
+3) Name search prior to the commit would not work unless a person's name's type & value were the same as that of the searched value.
+		Changing the validation from type & value (===) to .includes() allows us to search on the inputted value in real-time where any
+		name, first or last, may include the string of characters being searched.
+		
+4) Prior sort functionality for first name had worked without issues, however when sorting by last name, it was simply reversing the 
+		order of the returned array. Adding a new parameter of "subDetail" allowed the function to now have the scope of the sort
+		type, first or last. Once this was determined, it was possible to use the getFirstName/getLastName functions to return the
+		first/last name to sort by, depending on the scope, of course.
