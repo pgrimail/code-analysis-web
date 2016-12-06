@@ -49,15 +49,22 @@
     <head>
         <title>Single Page Application</title>
 
+        <!-- Add Bootstrap CDNs -->
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
         <style>
         body {
             margin: 0px;
             padding: 0px;
         }
 
+		/** Update CSS for app-container width **/
         .app-container {
-            width: 400px;
+            width: 700px;
             margin: 0 auto 0 auto;
+            margin-top: 20px;
         }
 
         .image {
@@ -68,6 +75,12 @@
         .list-container {
             width: 100%;
             border: 1px solid black;
+        }
+        
+        /** Add width and margin to buttons **/
+        button {
+        	margin-left: 25px;
+        	width: 150px;
         }
         </style>
     </head>
@@ -80,6 +93,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
         <!-- Our Application Logic -->
         <script>
@@ -226,7 +240,7 @@
             React.DOM.td({ key: 'last' }, null, getLastName(props.person.name)),
         ]);
 
-        const ListContainer = (props) => React.DOM.table({ className: 'list-container' }, [
+        const ListContainer = (props) => React.DOM.table({ className: 'table list-container' }, [
             React.DOM.thead({ key: 'thead' }, React.DOM.tr({}, [
                 React.DOM.th({ key: 'thumb-h' }, null, 'Thumbnail'),
                 React.DOM.th({ key: 'first-h' }, null, 'First Name'),
@@ -281,9 +295,9 @@
 
                 return React.DOM.div({ className: 'app-container' }, [
                     React.createElement(Search, { key: 'search', onChange: this._onSearch }),
-                    React.DOM.button({ key: 'shuffle', onClick: this._shuffleList }, null, 'Shuffle'),
-                    React.DOM.button({ key: 'sort-first', onClick: this._sortByFirst }, null, 'Sort (First Name)'),
-                    React.DOM.button({ key: 'sort-last', onClick: this._sortByLast }, null, 'Sort (Last Name)'),
+                    React.DOM.button({ className: 'btn btn-default', key: 'shuffle', onClick: this._shuffleList }, null, 'Shuffle'),
+                    React.DOM.button({ className: 'btn btn-default', key: 'sort-first', onClick: this._sortByFirst }, null, 'Sort (First Name)'),
+                    React.DOM.button({ className: 'btn btn-default', key: 'sort-last', onClick: this._sortByLast }, null, 'Sort (Last Name)'),
                     React.createElement(ListContainer, { key: 'list', personList: visiblePersonList })
                 ]);
             }
